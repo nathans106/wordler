@@ -1,8 +1,10 @@
+use crate::wordle::words;
+
 use super::{Game, GuessResult};
 
 pub fn run() {
     println!("Welcome to Wordle!");
-    let mut game = Game::new();
+    let mut game = Game::new(words::Variant::Uk);
     let stdin = std::io::stdin();
 
     loop {

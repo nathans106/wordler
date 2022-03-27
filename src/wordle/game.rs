@@ -16,8 +16,8 @@ pub struct Game {
 }
 
 impl Game {
-    pub fn new() -> Game {
-        let dictionary = words::fives();
+    pub fn new(variant: words::Variant) -> Game {
+        let dictionary = words::fives(variant);
         let mut rng = rand::thread_rng();
         let word_index = rng.gen_range(0..dictionary.len());
         Game{word_index: word_index, dictionary: dictionary, remaining_guesses: 6}
