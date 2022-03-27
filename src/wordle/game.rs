@@ -10,9 +10,9 @@ pub enum GuessResult{
 }
 
 pub struct Game {
-    word_index: usize,
     dictionary: Vec<&'static str>,
-    guess_count: i8
+    remaining_guesses: i8,
+    word_index: usize
 }
 
 impl Game {
@@ -20,14 +20,14 @@ impl Game {
         let dictionary = words::fives();
         let mut rng = rand::thread_rng();
         let word_index = rng.gen_range(0..dictionary.len());
-        Game{word_index: word_index, dictionary: dictionary, guess_count: 0}
+        Game{word_index: word_index, dictionary: dictionary, remaining_guesses: 6}
     }
 
     pub fn guess(&mut self, guess: &str) -> GuessResult {
-        static MAX_GUESSES: i8 = 6;
+        assert!(guess.len() == 5);
         let word = self.dictionary[self.word_index];
 
-        if self.guess_count >= MAX_GUESSES {
+        if self.remaining_guesses <= 0 {
             return GuessResult::GameOver(word);
         }
 
@@ -35,17 +35,21 @@ impl Game {
             return GuessResult::NotInDictionary;
         }
 
-        self.guess_count += 1;
+        self.remaining_guesses -= 1;
 
         if guess == word{
             return GuessResult::Correct;
         }
 
-        if self.guess_count == MAX_GUESSES{
+        if self.remaining_guesses <= 0 {
             return GuessResult::GameOver(word);
         }
 
         return GuessResult::Incorrect;
+    }
+
+    pub fn remaining(&self) -> i8 {
+        self.remaining_guesses
     }
 }
 
@@ -54,7 +58,7 @@ mod tests{
     use super::*;
 
     fn make_game()-> Game {
-        Game{dictionary: ["train", "apple", "house", "there", "build", "coach", "tread"].to_vec(), word_index: 1, guess_count: 0}
+        Game{dictionary: ["train", "apple", "house", "there", "build", "coach", "tread"].to_vec(), word_index: 1, remaining_guesses: 6}
     }
 
     #[test]

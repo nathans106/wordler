@@ -1,5 +1,4 @@
 mod wordle;
-
 fn main() {
-    println!("Hello, world!");
+    wordle::console::run();
 }
