@@ -76,17 +76,19 @@ mod tests{
     #[test]
     fn test_game_not_in_dictionary() {
         let mut game = make_game();
-        assert!(matches!(game.guess("paste"), GuessResult::NotInDictionary));
+        // If the word isn't in the dictionary then it shouldn't count as a guess, so attempt 7 times.
+        for _ in 0..7 {
+            assert!(matches!(game.guess("paste"), GuessResult::NotInDictionary));
+        }
     }
 
     #[test]
     fn test_game_game_over() {
         let mut game = make_game();
-        assert!(matches!(game.guess("there"), GuessResult::Incorrect));
-        assert!(matches!(game.guess("there"), GuessResult::Incorrect));
-        assert!(matches!(game.guess("there"), GuessResult::Incorrect));
-        assert!(matches!(game.guess("there"), GuessResult::Incorrect));
-        assert!(matches!(game.guess("there"), GuessResult::Incorrect));
+        for _ in 0..5 {
+            assert!(matches!(game.guess("there"), GuessResult::Incorrect));
+        }
+
         assert!(matches!(game.guess("there"), GuessResult::GameOver("apple")));
     }
 }
