@@ -1,7 +1,6 @@
 static UK_STRS: &str = include_str!("google-10000-english\\google-10000-english.txt");
 static USA_STRS: &str = include_str!("google-10000-english\\google-10000-english-usa.txt");
 
-
 pub enum Variant {
     Uk,
     Usa

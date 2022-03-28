@@ -1,5 +1,5 @@
 use rand::{self, Rng};
-use crate::wordle::words;
+use crate::words;
 
 static GUESSES: i8 = 6;
 static WORD_LENGTH: i8 = 5;

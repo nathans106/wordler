@@ -1,4 +1,4 @@
-use crate::wordle::words;
+use crate::words;
 
 use super::{Game, GuessResult, game::{LetterStatus, LetterStatuses}};
 

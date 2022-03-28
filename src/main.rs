@@ -1,4 +1,6 @@
-mod wordle;
+mod game;
+mod words;
+
 fn main() {
-    wordle::console::run();
+    game::console::run();
 }
