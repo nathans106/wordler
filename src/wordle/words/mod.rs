@@ -18,10 +18,6 @@ pub fn with_length(length: i8, variant: Variant) -> Words {
     strs.lines().filter(|line| line.len() == (length as usize)).collect()
 }
 
-pub fn fives(variant: Variant) -> Words {
-    with_length(5, variant)
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;

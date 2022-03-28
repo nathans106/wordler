@@ -1,6 +1,6 @@
 use crate::wordle::words;
 
-use super::{Game, GuessResult};
+use super::{Game, GuessResult, game::{LetterStatus, LetterStatuses}};
 
 pub fn run() {
     println!("Welcome to Wordle!");
@@ -23,9 +23,21 @@ pub fn run() {
         let result = game.guess(&guess);
         match result {
             GuessResult::Correct => return println!("You win!"),
-            GuessResult::Incorrect => println!("Incorrect, {} guesses remaining", game.remaining()),
+            GuessResult::Incorrect(statuses) => println!("{} | {} guesses remain", statuses_str(statuses), game.remaining()),
             GuessResult::NotInDictionary => println!("Not in dictionary"),
-            GuessResult::GameOver(word) => return println!("Game over, the word was {}", word)
+            GuessResult::GameOver(data) => return println!("{} | Game over, the word was {}", statuses_str(data.statuses), data.word)
         }
     }
+}
+
+fn statuses_str(statuses: LetterStatuses) -> String {
+    let status_char = |status: &LetterStatus| {
+        match status {
+            LetterStatus::Correct => "c",
+            LetterStatus::WrongPosition => "p",
+            LetterStatus::NotPresent => "x"
+        }
+    };
+
+    statuses.iter().map(status_char).collect()
 }
