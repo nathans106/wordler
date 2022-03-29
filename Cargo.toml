@@ -2,6 +2,10 @@
 name = "wordler"
 version = "0.1.0"
 edition = "2021"
+authors = ["Nathan Samra <me@nathansamra.com>"]
+description = "Wordle and a few solvers"
+repository = "https://github.com/nathans106/wordler"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
