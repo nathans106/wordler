@@ -23,7 +23,7 @@ mod tests {
 
     #[test]
     fn test_fives(){
-        let words = with_length(5, Variant::Uk);
+        let words = with_length(&5, &Variant::Uk);
         assert!(words.len() > 0);
         words.iter().for_each(|word| assert!(word.len() == 5));
     }

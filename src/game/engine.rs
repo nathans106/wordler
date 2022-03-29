@@ -82,11 +82,8 @@ mod tests{
 
     #[test]
     fn test_game_incorrect() {
-        use LetterStatus::{Correct, NotPresent, WrongPosition};
-        let statuses = [NotPresent, NotPresent, WrongPosition, NotPresent, Correct];
-
         let mut game = make_engine();
-        assert!(matches!(game.guess("there"), GuessResult::Incorrect(statuses)));
+        assert!(matches!(game.guess("there"), GuessResult::Incorrect(..)));
     }
 
     #[test]
@@ -100,15 +97,11 @@ mod tests{
 
     #[test]
     fn test_game_game_over() {
-        use LetterStatus::{Correct, NotPresent, WrongPosition};
-        let statuses = [NotPresent, NotPresent, WrongPosition, NotPresent, Correct];
-
         let mut game = make_engine();
         for _ in 0..(GUESSES - 1) {
-            assert!(matches!(game.guess("there"), GuessResult::Incorrect(statuses)));
+            assert!(matches!(game.guess("there"), GuessResult::Incorrect(..)));
         }
 
-        let game_over_data = GameOverData{word: "apple".to_string(), statuses: statuses.to_vec()};
-        assert!(matches!(game.guess("there"), GuessResult::GameOver(game_over_data)));
+        assert!(matches!(game.guess("there"), GuessResult::GameOver(..)));
     }
 }
