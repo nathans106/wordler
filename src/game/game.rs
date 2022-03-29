@@ -1,5 +1,6 @@
 use crate::words;
 
+#[derive(Clone, Copy)]
 pub enum LetterStatus{
     Correct,
     WrongPosition,
@@ -8,11 +9,13 @@ pub enum LetterStatus{
 
 pub type LetterStatuses = Vec<LetterStatus>;
 
+#[derive(Clone)]
 pub struct GameOverData {
     pub word: String,
     pub statuses: LetterStatuses
 }
 
+#[derive(Clone)]
 pub enum GuessResult{
     Correct,
     Incorrect(LetterStatuses),

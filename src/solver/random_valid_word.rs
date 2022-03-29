@@ -18,9 +18,9 @@ impl Solver for RandomValidWord {
         loop {
             let guess = words.iter().filter(|word| filter.call(word)).choose(&mut rng).unwrap();
             let result = game.guess(guess);
-            guesses.push(Guess{result: result, word: guess.to_string() });
+            guesses.push(Guess{result: result.clone(), word: guess.to_string() });
 
-            match game.guess(guess) {
+            match &result {
                 GuessResult::Correct => return guesses,
                 GuessResult::Incorrect(statuses) => filter.add(guess, &statuses),
                 GuessResult::NotInDictionary => unimplemented!(),
