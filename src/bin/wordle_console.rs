@@ -1,8 +1,8 @@
-use wordler::game::{Game, GuessResult, LetterStatuses, LetterStatus};
+use wordler::game::{Wordle, GuessResult, LetterStatuses, LetterStatus, Game};
 
 fn main() {
     println!("Welcome to Wordle!");
-    let mut game = Game::new();
+    let mut game = Wordle::new();
     let stdin = std::io::stdin();
 
     loop {
