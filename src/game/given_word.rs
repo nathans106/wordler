@@ -7,6 +7,7 @@ pub struct GivenWord {
     word_length: i8
 }
 
+#[derive(Debug)]
 pub struct NotInDictionary;
 
 impl GivenWord {

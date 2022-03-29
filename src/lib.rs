@@ -1,2 +1,3 @@
 pub mod game;
-mod words;
+pub mod words;
+pub mod solver;

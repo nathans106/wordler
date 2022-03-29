@@ -3,9 +3,9 @@ use crate::{words, game::game::{GuessResult}};
 use super::{game::Game, engine::Engine};
 use rand::{self, Rng};
 
-static GUESSES: i8 = 6;
-static WORD_LENGTH: i8 = 5;
-static WORDS_VARIANT: words::Variant = words::Variant::Uk;
+pub static GUESSES: i8 = 6;
+pub static WORD_LENGTH: i8 = 5;
+pub static WORDS_VARIANT: words::Variant = words::Variant::Uk;
 
 pub struct Wordle {
     engine: Engine
