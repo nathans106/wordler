@@ -3,6 +3,7 @@ use crate::words;
 
 static GUESSES: i8 = 6;
 static WORD_LENGTH: i8 = 5;
+static WORDS_VARIANT: words::Variant = words::Variant::Uk;
 
 pub enum LetterStatus{
     Correct,
@@ -31,11 +32,15 @@ pub struct Game {
 }
 
 impl Game {
-    pub fn new(variant: words::Variant) -> Game {
-        let dictionary = words::with_length(WORD_LENGTH, variant);
+    pub fn new() -> Game {
+        let dictionary = words::with_length(&WORD_LENGTH, &WORDS_VARIANT);
         let mut rng = rand::thread_rng();
         let word_index = rng.gen_range(0..dictionary.len());
         Game{word_index: word_index, dictionary: dictionary, remaining_guesses: GUESSES}
+    }
+
+    pub fn words_variant() -> &'static words::Variant {
+        &WORDS_VARIANT
     }
 
     pub fn word_length() -> i8 {

@@ -8,13 +8,13 @@ pub enum Variant {
 
 pub type Words = Vec<&'static str>;
 
-pub fn with_length(length: i8, variant: Variant) -> Words {
+pub fn with_length(length: &i8, variant: &Variant) -> Words {
     let strs = match variant {
         Variant::Uk => UK_STRS,
         Variant::Usa => USA_STRS
     };
 
-    strs.lines().filter(|line| line.len() == (length as usize)).collect()
+    strs.lines().filter(|line| line.len() == (*length as usize)).collect()
 }
 
 #[cfg(test)]
