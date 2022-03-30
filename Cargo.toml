@@ -1,6 +1,6 @@
 [package]
 name = "wordler"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 authors = ["Nathan Samra <me@nathansamra.com>"]
 description = "Wordle and a few solvers"
