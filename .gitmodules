@@ -1,3 +1,3 @@
 [submodule "src/words/google-10000-english"]
-	path = src/words/google-10000-english
+	path = solver/src/words/google-10000-english
 	url = https://github.com/first20hours/google-10000-english.git
