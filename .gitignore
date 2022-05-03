@@ -4,3 +4,4 @@ Cargo.lock
 .cargo
 /.venv/
 /solver/target/
+*.pyc
